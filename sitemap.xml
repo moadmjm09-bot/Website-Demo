@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services | Denver Majestic Limousines</title>
+<meta name="description" content="Airport transfers, weddings, corporate travel, prom and special events &mdash; Denver Majestic Limousines delivers chauffeured luxury for every occasion.">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="canonical" href="https://denvermajesticlimo.com/services.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#12100f">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Denver Majestic Limousines">
+<meta property="og:title" content="Services | Denver Majestic Limousines">
+<meta property="og:description" content="Airport transfers, weddings, corporate travel, prom and special events — Denver Majestic Limousines delivers chauffeured luxury for every occasion.">
+<meta property="og:url" content="https://denvermajesticlimo.com/services.html">
+<meta property="og:image" content="https://denvermajesticlimo.com/assets/logo.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Services | Denver Majestic Limousines">
+<meta name="twitter:description" content="Airport transfers, weddings, corporate travel, prom and special events — Denver Majestic Limousines delivers chauffeured luxury for every occasion.">
+<meta name="twitter:image" content="https://denvermajesticlimo.com/assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Geist:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="page-loader"><img src="assets/logo.png" alt="Denver Majestic Limousines" class="loader-logo"></div>
+<header class="site-header" id="siteHeader">
+  <div class="topbar">
+    <div class="container topbar-row">
+      <a href="tel:+17205680206" class="topbar-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="tp-number">(720) 568-0206</span>
+        <span class="tp-note">Available 24/7</span>
+      </a>
+      <a href="booking.html" class="topbar-book">
+        <span>Book Online</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="container nav-row">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Denver Majestic Limousines" class="brand-logo" width="1774" height="887">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="fleet.html">Fleet</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+17205680206" class="nav-call-btn glass-btn" aria-label="Call (720) 568-0206">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a href="booking.html" class="btn btn-primary">Book Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-drawer-backdrop" id="navDrawerBackdrop"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="fleet.html">Fleet</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="booking.html" class="btn btn-primary btn-block">Book Now</a>
+  <a href="tel:+17205680206" class="btn btn-outline btn-block">Call (720) 568-0206</a>
+</div>
+
+<main>
+
+  <section class="page-hero">
+    <div class="hero-media">
+      <img src="assets/photos/airport.jpg" fetchpriority="high" alt="Airport transfer service">
+    </div>
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Services</span></div>
+      <div class="eyebrow">What We Offer</div>
+      <h1>Chauffeured Service for Every Occasion</h1>
+      <p class="lede mt-4">From 5am flights to midnight celebrations, Denver Majestic is the calm, polished constant behind your best days.</p>
+    </div>
+  </section>
+
+  <section class="section-pad section-light">
+    <div class="container">
+
+      <div class="fleet-row" id="airport" data-reveal="fade">
+        <div class="fleet-media"><img src="assets/photos/airport.jpg" alt="Airport Transfers" loading="lazy"></div>
+        <div>
+          <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 22h20"/><path d="M6.36 17.4 4 17l-2-4 1.1-.55a2 2 0 0 1 1.8 0l.9.45 2-4-1-4 1.75-.35a2 2 0 0 1 1.62.4l1.1.85 2.5-2.5a2.5 2.5 0 0 1 3.54 3.54l-2.5 2.5.85 1.1a2 2 0 0 1 .4 1.62l-.35 1.75-4-1-4.55 4.55Z"/></svg></div>
+          <h2 class="h3">Airport Transfers</h2>
+          <p class="lede mt-4">Meet-and-greet service at Denver International with live flight tracking, so we're waiting curbside no matter when you land.</p>
+          <ul class="feature-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Real-time flight monitoring &amp; free wait time</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Curbside or inside meet-and-greet available</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Door-to-door, no shared rides or stops</li>
+          </ul>
+          <a href="booking.html?service=airport" class="btn btn-outline">Book Airport Transfer</a>
+        </div>
+      </div>
+
+      <div class="fleet-row" id="weddings" data-reveal="fade">
+        <div class="fleet-media"><img src="assets/photos/wedding.jpg" alt="Weddings" loading="lazy"></div>
+        <div>
+          <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8.5" cy="15.5" r="4.5"/><circle cx="15.5" cy="15.5" r="4.5"/><path d="M9 4.5 12 8l3-3.5"/></svg></div>
+          <h2 class="h3">Weddings</h2>
+          <p class="lede mt-4">From getting-ready to grand exit, we coordinate directly with your planner to keep the timeline &mdash; and the bridal party &mdash; perfectly on schedule.</p>
+          <ul class="feature-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Complimentary champagne toast on board</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Red carpet &amp; umbrella service on request</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Direct planner coordination &amp; timeline buffers</li>
+          </ul>
+          <a href="booking.html?service=weddings" class="btn btn-outline">Plan Your Wedding Transport</a>
+        </div>
+      </div>
+
+      <div class="fleet-row" id="corporate" data-reveal="fade">
+        <div class="fleet-media"><img src="assets/photos/corporate.jpg" alt="Corporate Travel" loading="lazy"></div>
+        <div>
+          <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></div>
+          <h2 class="h3">Corporate Travel</h2>
+          <p class="lede mt-4">Executive transport, roadshows and client experiences with the discretion, reliability and polish your business deserves.</p>
+          <ul class="feature-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Monthly billing &amp; corporate accounts available</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>NDA-friendly, background-checked chauffeurs</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Multi-stop itineraries &amp; roadshow logistics</li>
+          </ul>
+          <a href="booking.html?service=corporate" class="btn btn-outline">Set Up Corporate Travel</a>
+        </div>
+      </div>
+
+      <div class="fleet-row" id="events" data-reveal="fade">
+        <div class="fleet-media"><img src="assets/photos/special-events.jpg" alt="Special Events" loading="lazy"></div>
+        <div>
+          <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10l-1 8a4 4 0 0 1-8 0Z"/><path d="M7 7H4.5a1.5 1.5 0 0 1 0-3H7"/><path d="M17 7h2.5a1.5 1.5 0 0 0 0-3H17"/></svg></div>
+          <h2 class="h3">Special Events &amp; Nights Out</h2>
+          <p class="lede mt-4">Concerts, bachelor(ette) parties, birthdays or a night on the town &mdash; skip the parking and surge pricing, arrive together in style.</p>
+          <ul class="feature-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Multi-stop nightlife itineraries</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Party bus &amp; stretch limo options</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Safe, sober rides home included</li>
+          </ul>
+          <a href="booking.html?service=events" class="btn btn-outline">Plan a Night Out</a>
+        </div>
+      </div>
+
+      <div class="fleet-row" id="prom" data-reveal="fade">
+        <div class="fleet-media"><img src="assets/photos/prom.jpg" alt="Prom &amp; Graduation" loading="lazy"></div>
+        <div>
+          <div class="icon-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <h2 class="h3">Prom &amp; Graduation</h2>
+          <p class="lede mt-4">Give students a safe, unforgettable arrival with parent-friendly booking, verified chauffeurs, and door-to-door supervision.</p>
+          <ul class="feature-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Parent booking &amp; pickup confirmation</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Group rates for stretch limos &amp; party buses</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Zero-tolerance safety policy</li>
+          </ul>
+          <a href="booking.html?service=prom" class="btn btn-outline">Book Prom Transportation</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head center" data-reveal="fade">
+        <div class="eyebrow">Simple by Design</div>
+        <h2>Booking Takes Three Steps</h2>
+      </div>
+      <div class="process-row" data-reveal-group>
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <h3 class="h4">Request a Quote</h3>
+          <p class="text-muted mt-2" style="font-size:var(--fs-sm)">Tell us your date, route, and vehicle preference &mdash; takes under two minutes.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <h3 class="h4">Confirm Details</h3>
+          <p class="text-muted mt-2" style="font-size:var(--fs-sm)">Our team confirms pricing and pairs you with the right vehicle and chauffeur.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <h3 class="h4">Enjoy the Ride</h3>
+          <p class="text-muted mt-2" style="font-size:var(--fs-sm)">Your chauffeur arrives early, tracks your schedule, and handles the rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="cta-banner" data-reveal="scale">
+        <div class="eyebrow" style="justify-content:center;">Let's Get You Moving</div>
+        <h2>Request Your Chauffeured Ride Today</h2>
+        <div class="actions">
+          <a href="booking.html" class="btn btn-primary">Get an Instant Quote</a>
+          <a href="tel:+17205680206" class="btn btn-outline">Call (720) 568-0206</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-skyline" aria-hidden="true">
+    <svg viewBox="0 0 1600 460" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtnFarGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#9aa0a6" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#9aa0a6" stop-opacity="0.06"/>
+        </linearGradient>
+        <linearGradient id="mtnMidGrad" gradientUnits="userSpaceOnUse" x1="0" y1="150" x2="1600" y2="460">
+          <stop offset="0%" stop-color="#7a7d82" stop-opacity="0.72"/>
+          <stop offset="100%" stop-color="#2a2b2e" stop-opacity="0.58"/>
+        </linearGradient>
+        <linearGradient id="mtnNearGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1600" y2="460">
+          <stop offset="0%" stop-color="#8b8e93"/>
+          <stop offset="45%" stop-color="#45474b"/>
+          <stop offset="100%" stop-color="#0c0c0d"/>
+        </linearGradient>
+        <linearGradient id="mtnSnowGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="50%" stop-color="#f2f2f2"/>
+          <stop offset="100%" stop-color="#c9cacb"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Distant, misty range -->
+      <path class="mtn-far" d="M-20,460 0,262 120,300 220,232 340,280 460,212 580,270 700,202 820,260 940,192 1060,250 1180,212 1300,265 1420,222 1540,270 1620,242 1620,460 Z"/>
+
+      <!-- Mid range: irregular jagged ridgeline, not symmetric triangles -->
+      <g class="mtn-mid">
+        <polygon points="-40,460 30,280 70,310 120,180 160,260 200,230 260,460"/>
+        <polygon points="180,460 250,270 290,300 340,90 390,220 430,190 460,290 520,460"/>
+        <polygon points="460,460 520,320 560,350 600,200 650,290 690,260 760,460"/>
+        <polygon points="700,460 760,300 800,330 880,110 930,240 970,210 1010,300 1060,460"/>
+        <polygon points="980,460 1040,320 1080,350 1140,210 1190,300 1230,270 1300,460"/>
+        <polygon points="1240,460 1310,320 1350,350 1420,140 1470,260 1510,230 1600,460"/>
+        <polygon points="1500,460 1560,340 1600,300 1650,190 1660,460"/>
+      </g>
+      <g class="mtn-snow mtn-snow-mid">
+        <polygon points="340,90 356,132 337,107 326,149"/>
+        <polygon points="880,110 896,152 876,127 858,172"/>
+      </g>
+
+      <!-- Front range: irregular jagged peaks under one shared diagonal
+           gradient (warm/lit in the west, cooling into shadow toward the
+           east) so the whole ridge reads as one coherently lit scene
+           instead of each peak being flat-shaded on its own. -->
+      <g class="mtn-near">
+        <polygon points="-40,460 10,300 55,335 130,95 175,255 210,225 260,460"/>
+        <polygon points="220,460 270,280 310,320 390,20 440,175 480,145 520,300 560,460"/>
+        <polygon points="500,460 555,320 595,350 660,150 710,285 750,255 820,460"/>
+        <polygon points="780,460 838,300 878,330 950,60 1000,215 1040,185 1080,315 1120,460"/>
+        <polygon points="1080,460 1138,330 1168,358 1230,190 1270,298 1310,270 1360,460"/>
+        <polygon points="1320,460 1378,320 1408,348 1470,110 1508,258 1545,228 1600,460"/>
+        <polygon points="1560,460 1600,340 1620,262 1650,378 1660,460"/>
+      </g>
+      <g class="mtn-snow mtn-snow-near">
+        <polygon points="390,20 408,74 385,43 366,110"/>
+        <polygon points="950,60 968,114 945,83 928,141"/>
+        <polygon points="1470,110 1483,162 1465,132 1451,181"/>
+      </g>
+
+      <g class="mtn-stars">
+        <circle cx="95" cy="70" r="2"/>
+        <circle cx="245" cy="40" r="1.6"/>
+        <circle cx="520" cy="55" r="2"/>
+        <circle cx="705" cy="35" r="1.6"/>
+        <circle cx="915" cy="65" r="2"/>
+        <circle cx="1150" cy="45" r="1.6"/>
+        <circle cx="1330" cy="70" r="2"/>
+        <circle cx="1500" cy="40" r="1.8"/>
+        <circle cx="60" cy="115" r="1.4"/>
+        <circle cx="1600" cy="100" r="1.6"/>
+      </g>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <img src="assets/logo.png" alt="Denver Majestic Limousines" class="brand-logo" width="1774" height="887">
+        </a>
+        <p>Denver's premier chauffeured transportation service. Uncompromising luxury, punctuality, and discretion for every occasion since 2009.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="fleet.html">Our Fleet</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="services.html#airport">Airport Transfers</a></li>
+          <li><a href="services.html#weddings">Weddings</a></li>
+          <li><a href="services.html#corporate">Corporate Travel</a></li>
+          <li><a href="services.html#events">Special Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul class="footer-contact">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>(720) 568-0206</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg><span>reservations@denvermajesticlimo.com</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dispatch available 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Denver Majestic Limousines. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>

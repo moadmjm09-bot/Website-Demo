@@ -1,0 +1,430 @@
+/* Denver Majestic Limousines — shared interactions */
+(function () {
+  'use strict';
+
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Page loader ---------- */
+  window.addEventListener('load', function () {
+    var loader = document.querySelector('.page-loader');
+    if (loader) {
+      setTimeout(function () { loader.classList.add('is-hidden'); }, 180);
+    }
+  });
+
+  /* ---------- Sticky nav state ---------- */
+  var header = document.querySelector('.site-header');
+  var routeRail = document.querySelector('.route-rail');
+  var railFill = routeRail ? routeRail.querySelector('.route-rail-fill') : null;
+  var railMarker = routeRail ? routeRail.querySelector('.route-rail-marker') : null;
+  var railHost = routeRail ? routeRail.parentElement : null;
+  var heroScrollCue = document.querySelector('.hero-scroll');
+  var scrollTicking = false;
+  function applyScrollState() {
+    var vh = window.innerHeight;
+    if (header) {
+      if (window.scrollY > 24) header.classList.add('is-scrolled');
+      else header.classList.remove('is-scrolled');
+    }
+    if (railFill && railHost) {
+      var railRect = railHost.getBoundingClientRect();
+      var railP = Math.min(Math.max((vh - railRect.top) / railRect.height, 0), 1);
+      railFill.style.transform = 'scaleY(' + railP + ')';
+      if (railMarker) railMarker.style.top = (railP * 100) + '%';
+    }
+    if (heroScrollCue) {
+      heroScrollCue.style.opacity = Math.max(1 - window.scrollY / 220, 0);
+    }
+    toggleBackToTop();
+    scrollTicking = false;
+  }
+  function onScroll() {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(applyScrollState);
+      scrollTicking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  applyScrollState();
+
+  /* ---------- Mobile page drawer (secondary nav) ---------- */
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.querySelector('.mobile-menu');
+  var navBackdrop = document.querySelector('.nav-drawer-backdrop');
+  if (navToggle && mobileMenu) {
+    function closeDrawer() {
+      mobileMenu.classList.remove('is-open');
+      navToggle.classList.remove('is-open');
+      if (navBackdrop) navBackdrop.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    function openDrawer() {
+      mobileMenu.classList.add('is-open');
+      navToggle.classList.add('is-open');
+      if (navBackdrop) navBackdrop.classList.add('is-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    navToggle.addEventListener('click', function () {
+      if (mobileMenu.classList.contains('is-open')) closeDrawer(); else openDrawer();
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeDrawer);
+    });
+    if (navBackdrop) navBackdrop.addEventListener('click', closeDrawer);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('[data-reveal], [data-reveal-group]');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          /* Promote to a compositor layer only for the moment of the
+             reveal transition, then drop it — leaving will-change on
+             permanently would pin dozens of layers in GPU memory for
+             the rest of the page's life, which is heavy on low-end
+             mobile devices. */
+          el.style.willChange = 'transform, opacity';
+          el.classList.add('is-visible');
+          el.addEventListener('transitionend', function clear() {
+            el.style.willChange = '';
+            el.removeEventListener('transitionend', clear);
+          });
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Animated stat counters ---------- */
+  var counters = document.querySelectorAll('[data-count]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    var counterIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseFloat(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1600;
+        var numEl = el.closest('.num') || el.parentElement;
+        var statEl = el.closest('.stat');
+        var badgeEl = statEl ? statEl.querySelector('.stat-icon-badge') : null;
+        /* Start the count-up in step with this stat's own fade-in delay
+           (same 90ms-per-item stagger the CSS reveal uses) instead of
+           every number ticking up in lockstep the instant the row
+           scrolls into view. */
+        var group = statEl && statEl.parentElement;
+        var delay = 0;
+        if (statEl && group && group.hasAttribute('data-reveal-group')) {
+          delay = Array.prototype.indexOf.call(group.children, statEl) * 90;
+        }
+        function finish() {
+          el.textContent = target + suffix;
+          if (numEl) {
+            numEl.classList.add('is-counted');
+            numEl.addEventListener('animationend', function () { numEl.classList.remove('is-counted'); }, { once: true });
+          }
+          if (badgeEl) {
+            badgeEl.classList.add('is-counted');
+            badgeEl.addEventListener('animationend', function () { badgeEl.classList.remove('is-counted'); }, { once: true });
+          }
+        }
+        function run() {
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 4);
+            var value = target < 10 ? (target * eased).toFixed(1) : Math.floor(target * eased);
+            el.textContent = value + suffix;
+            if (progress < 1) window.requestAnimationFrame(step);
+            else finish();
+          }
+          window.requestAnimationFrame(step);
+        }
+        if (reducedMotion) {
+          el.textContent = target + suffix;
+        } else if (delay > 0) {
+          setTimeout(run, delay);
+        } else {
+          run();
+        }
+        counterIO.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (el) { counterIO.observe(el); });
+  }
+
+  /* ---------- Back to top ---------- */
+  var backToTop = document.querySelector('.back-to-top');
+  function toggleBackToTop() {
+    if (!backToTop) return;
+    if (window.scrollY > 700) backToTop.classList.add('is-visible');
+    else backToTop.classList.remove('is-visible');
+  }
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ---------- Active nav link by pathname ---------- */
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function (a) {
+    var href = a.getAttribute('href');
+    if (href === path || (path === '' && href === 'index.html')) a.classList.add('active');
+  });
+
+  /* ---------- Hero quote widget (tabs + submit-to-booking) ---------- */
+  var quoteWidget = document.querySelector('.quote-widget');
+  if (quoteWidget) {
+    var wTabs = quoteWidget.querySelectorAll('.widget-tab');
+    var wPanels = quoteWidget.querySelectorAll('.widget-panel');
+    wTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-widget-tab');
+        wTabs.forEach(function (t) { t.classList.toggle('is-active', t === tab); });
+        wPanels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-widget-panel') === target); });
+      });
+    });
+    quoteWidget.querySelectorAll('[data-widget-submit]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var panel = btn.closest('.widget-panel');
+        var mode = panel.getAttribute('data-widget-panel');
+        var params = new URLSearchParams();
+        params.set('service', mode === 'hourly' ? 'hourly' : 'point-to-point');
+        panel.querySelectorAll('input, select').forEach(function (input) {
+          if (!input.value) return;
+          if (input.type === 'date') params.set('pickupDate', input.value);
+          else if (input.type === 'time') params.set('pickupTime', input.value);
+          else if (input.id.indexOf('wPickup') === 0) params.set('pickupLocation', input.value);
+          else if (input.id.indexOf('wDropoff') === 0) params.set('dropoffLocation', input.value);
+          else if (input.id.indexOf('wDuration') === 0) params.set('duration', input.value);
+        });
+        /* Belt-and-suspenders: also stash the draft in sessionStorage.
+           Some static hosts/dev servers rewrite clean URLs and drop the
+           query string in the process, which would otherwise silently
+           lose everything the visitor just typed. booking.js reads
+           whichever source actually has each value. */
+        try {
+          var draft = {};
+          params.forEach(function (value, key) { draft[key] = value; });
+          sessionStorage.setItem('dmlQuoteDraft', JSON.stringify(draft));
+        } catch (e) { /* storage unavailable (private mode, etc.) — URL params still work */ }
+        window.location.href = 'booking.html?' + params.toString();
+      });
+    });
+  }
+
+  /* ---------- Belt-and-suspenders for booking.html?... links ----------
+     Fleet and Services cards link straight to booking.html with a query
+     string (?vehicle=... or ?service=...). Same rewrite risk as the hero
+     widget above, so stash it to sessionStorage on click too. */
+  document.querySelectorAll('a[href*="booking.html?"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var query = a.getAttribute('href').split('?')[1];
+      if (!query) return;
+      try {
+        var draft = {};
+        new URLSearchParams(query).forEach(function (value, key) { draft[key] = value; });
+        sessionStorage.setItem('dmlQuoteDraft', JSON.stringify(draft));
+      } catch (e) { /* storage unavailable (private mode, etc.) — URL params still work */ }
+    });
+  });
+
+  /* ---------- Generic chip filter (Fleet) ---------- */
+  document.querySelectorAll('[data-filter-group]').forEach(function (group) {
+    var chips = group.querySelectorAll('.chip');
+    var items = document.querySelectorAll(group.getAttribute('data-filter-group'));
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('is-active'); });
+        chip.classList.add('is-active');
+        var filter = chip.getAttribute('data-filter');
+        items.forEach(function (item) {
+          var cats = (item.getAttribute('data-category') || '').split(' ');
+          var show = filter === 'all' || cats.indexOf(filter) !== -1;
+          if (show) {
+            var wasHidden = item.style.display === 'none';
+            item.style.display = '';
+            item.classList.add('is-visible');
+            if (wasHidden && !reducedMotion) {
+              item.classList.remove('filter-enter');
+              void item.offsetWidth;
+              item.classList.add('filter-enter');
+            }
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+
+  /* ---------- Generic form validation ---------- */
+  function validateField(field) {
+    var input = field.querySelector('.input, input, select, textarea');
+    if (!input) return true;
+    var valid = input.checkValidity();
+    field.classList.toggle('has-error', !valid);
+    return valid;
+  }
+
+  /* Forms POST to send.php, a small PHP mailer that emails every
+     submission to moadmjm09@gmail.com. Requires a PHP-capable host
+     (Apache/Nginx + PHP, or any shared hosting) — it will not run on a
+     plain static file server such as the local `npx serve` preview. */
+  var FORM_ENDPOINT = 'send.php';
+  var DESTINATION_EMAIL = 'moadmjm09@gmail.com';
+
+  document.querySelectorAll('form[data-validate]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fields = form.querySelectorAll('.field');
+      var allValid = true;
+      fields.forEach(function (field) {
+        if (!validateField(field)) allValid = false;
+      });
+      if (!allValid) {
+        var firstError = form.querySelector('.has-error input, .has-error select, .has-error textarea');
+        if (firstError) firstError.focus();
+        return;
+      }
+
+      var submitBtn = form.querySelector('[type="submit"]');
+      var originalLabel = submitBtn ? submitBtn.textContent : '';
+      var errorNote = form.querySelector('.form-send-error');
+      if (errorNote) errorNote.style.display = 'none';
+
+      function showSuccess(note) {
+        var successEl = form.querySelector('[data-success]') || document.querySelector('#formSuccess');
+        form.setAttribute('data-submitted', 'true');
+        form.style.display = 'none';
+        if (successEl) {
+          if (note) {
+            var noteEl = successEl.querySelector('.form-success-note') || (function () {
+              var p = document.createElement('p');
+              p.className = 'form-success-note text-muted mt-4';
+              successEl.insertBefore(p, successEl.querySelector('.btn'));
+              return p;
+            })();
+            noteEl.textContent = note;
+          }
+          successEl.style.display = 'block';
+          successEl.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+        }
+      }
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+      var data = new FormData(form);
+      /* The contact form already has its own "subject" field (the inquiry
+         dropdown); only add a default subject when a form lacks one. */
+      if (!data.has('subject')) data.append('subject', 'New request — Denver Majestic Limousines');
+
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      }).then(function (res) {
+        if (!res.ok) throw new Error('send failed');
+        return res.json();
+      }).then(function (json) {
+        if (json && json.success === false) throw new Error('server error');
+        showSuccess();
+      }).catch(function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+        if (!errorNote) {
+          errorNote = document.createElement('p');
+          errorNote.className = 'form-send-error';
+          errorNote.setAttribute('role', 'alert');
+          form.appendChild(errorNote);
+        }
+        errorNote.textContent = 'Something went wrong sending your request. Please email us at ' + DESTINATION_EMAIL + ' or call (720) 568-0206.';
+        errorNote.style.display = 'block';
+      });
+    });
+
+    form.querySelectorAll('.input').forEach(function (input) {
+      input.addEventListener('blur', function () {
+        var field = input.closest('.field');
+        if (field) validateField(field);
+      });
+    });
+  });
+
+  /* ---------- Custom cursor (fine pointer + no reduced motion only) ---------- */
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (finePointer && !reducedMotion) {
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    document.documentElement.classList.add('has-custom-cursor');
+
+    var mouseX = -100, mouseY = -100, glowX = -100, glowY = -100;
+    var cursorHoverSelector = 'a, button, .btn, input, select, textarea, label, .card, .fleet-card, .service-card, .icon-card, .chip, [data-carousel] .carousel-arrow';
+
+    window.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX; mouseY = e.clientY;
+    });
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest && e.target.closest(cursorHoverSelector)) glow.classList.add('is-hover');
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest && e.target.closest(cursorHoverSelector)) glow.classList.remove('is-hover');
+    });
+    document.addEventListener('mouseleave', function () { glow.style.opacity = '0'; });
+    document.addEventListener('mouseenter', function () { glow.style.opacity = ''; });
+
+    function glowLoop() {
+      glowX += (mouseX - glowX) * 0.07;
+      glowY += (mouseY - glowY) * 0.07;
+      glow.style.transform = 'translate(' + glowX + 'px,' + glowY + 'px) translate(-50%,-50%)';
+      window.requestAnimationFrame(glowLoop);
+    }
+    window.requestAnimationFrame(glowLoop);
+  }
+
+  /* ---------- 3D tilt cards (home carousels + form selection tiles) ----------
+     Cards tip toward the cursor with a light sheen tracking across them.
+     Delegated so carousel clones (added later) tilt too. Fine pointer
+     and motion-safe only. */
+  if (finePointer && !reducedMotion) {
+    document.querySelectorAll('.page-home .fleet-card, .page-home .service-card, .radio-card').forEach(function (card) {
+      card.classList.add('tilt-3d');
+      if (!card.querySelector('.tilt-sheen')) {
+        var sheen = document.createElement('span');
+        sheen.className = 'tilt-sheen';
+        card.appendChild(sheen);
+      }
+    });
+    document.addEventListener('pointermove', function (e) {
+      var card = e.target.closest && e.target.closest('.tilt-3d');
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      card.classList.add('is-tilting');
+      card.style.transform = 'perspective(900px) rotateX(' + ((0.5 - py) * 9).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 9).toFixed(2) + 'deg) translateY(-6px)';
+      var sheen = card.querySelector('.tilt-sheen');
+      if (sheen) {
+        sheen.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        sheen.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      }
+    }, { passive: true });
+    document.addEventListener('pointerout', function (e) {
+      var card = e.target.closest && e.target.closest('.tilt-3d');
+      if (!card || (e.relatedTarget && card.contains(e.relatedTarget))) return;
+      card.classList.remove('is-tilting');
+      card.style.transform = '';
+    }, { passive: true });
+  }
+
+})();
